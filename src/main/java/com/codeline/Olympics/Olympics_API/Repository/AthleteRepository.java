@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AthleteRepository extends JpaRepository<AthleteInformation, Integer> {
 
@@ -16,6 +18,7 @@ public interface AthleteRepository extends JpaRepository<AthleteInformation, Int
     AthleteInformation getAthleteByAthleteName(@Param("name") String name);
 
     @Query("SELECT a from AthleteInformation a")
-    AthleteInformation getAllAthletes();
+    List<AthleteInformation> getAllAthletes();
+
 
 }

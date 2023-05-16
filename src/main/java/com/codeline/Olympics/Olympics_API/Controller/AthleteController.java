@@ -3,7 +3,12 @@ package com.codeline.Olympics.Olympics_API.Controller;
 import com.codeline.Olympics.Olympics_API.Model.AthleteInformation;
 import com.codeline.Olympics.Olympics_API.Service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "athlete")
@@ -33,9 +38,9 @@ public class AthleteController {
         return athleteByName;
     }
     // function to that gets all the athlete data(getAllAthlete)
-    @RequestMapping(value = "/getAllAthlete", method = RequestMethod.GET)
-    public AthleteInformation getAllAthlete() {
-        AthleteInformation getAllAthlete = athleteService.getAllAthlete();
-        return getAllAthlete;
+    @RequestMapping(value = "/getAllAthletes", method = RequestMethod.GET)
+    public List<AthleteInformation> getAllAthletes() {
+        List<AthleteInformation> getAllAthletes = athleteService.getAllAthlete();
+        return getAllAthletes;
     }
 }

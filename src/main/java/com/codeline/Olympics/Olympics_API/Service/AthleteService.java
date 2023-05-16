@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AthleteService {
@@ -39,8 +40,8 @@ public class AthleteService {
         return athleteInformationName;
     }
     // function to that gets all the athlete data(getAllAthlete)
-    public AthleteInformation getAllAthlete() {
-        AthleteInformation getAllAthlete = athleteRepository.getAllAthletes();
+    public List<AthleteInformation> getAllAthlete() {
+        List<AthleteInformation> getAllAthlete = athleteRepository.getAllAthletes();
         return getAllAthlete;
     }
 

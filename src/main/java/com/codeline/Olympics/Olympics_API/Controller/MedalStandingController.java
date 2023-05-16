@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "standings")
 public class MedalStandingController {
@@ -37,5 +39,12 @@ public class MedalStandingController {
     public MedalStanding getMedalStandingByCountry(@RequestParam String country) {
         MedalStanding getMedalStandingByCountry = medalStandingService.getMedalStandingByCountry(country);
         return getMedalStandingByCountry;
+    }
+
+    // function to that gets all the Medal Standings (getAllMedalStandings)
+    @RequestMapping(value = "/getAllMedalStandings", method = RequestMethod.GET)
+    public List<MedalStanding> getAllMedalStandings() {
+        List<MedalStanding> getAllMedalStandings = medalStandingService.getAllMedalStandings();
+        return getAllMedalStandings;
     }
 }

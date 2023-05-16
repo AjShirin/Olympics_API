@@ -1,10 +1,13 @@
 package com.codeline.Olympics.Olympics_API.Repository;
 
+import com.codeline.Olympics.Olympics_API.Model.EventInformation;
 import com.codeline.Olympics.Olympics_API.Model.MedalStanding;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface MedalStandingRepository extends JpaRepository<MedalStanding, Integer> {
@@ -13,4 +16,7 @@ public interface MedalStandingRepository extends JpaRepository<MedalStanding, In
 
     @Query("SELECT m from MedalStanding m where m.country= :country")
     MedalStanding getMedalStandingByCountry(@Param("country") String country);
+
+    @Query("SELECT m from MedalStanding m")
+    List<MedalStanding> getAllStandings();
 }

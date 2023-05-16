@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MedalStandingService {
@@ -40,6 +41,12 @@ public class MedalStandingService {
         MedalStanding medalStandingCountry = medalStandingRepository.getMedalStandingByCountry(country);
         return medalStandingCountry;
     }
+    // function to that gets all the Medal Standings (getAllMedalStandings)
+    public List<MedalStanding> getAllMedalStandings() {
+        List<MedalStanding> getAllMedalStandings = medalStandingRepository.getAllStandings();
+        return getAllMedalStandings;
+    }
+
 
 
 }

@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface EventRepository extends JpaRepository<EventInformation, Integer> {
     @Query("SELECT e from EventInformation e where e.id= :eventId")
@@ -13,4 +15,7 @@ public interface EventRepository extends JpaRepository<EventInformation, Integer
 
     @Query("SELECT e from EventInformation e where e.eventName= :eventName")
     EventInformation getEventByEventName(@Param("eventName") String eventName);
+
+    @Query("SELECT e from EventInformation e")
+    List<EventInformation> getAllEvents();
 }

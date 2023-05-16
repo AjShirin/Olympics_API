@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class EventService {
@@ -30,15 +31,23 @@ public class EventService {
         event.setAthleteInformation(athleteInformation);
         eventRepository.save(event);
     }
+
     // function to that gets the event data by event Id (getEventByEventId)
     public EventInformation getEventByEventId(Integer id) {
         EventInformation eventInformationId = eventRepository.getEventByEventId(id);
         return eventInformationId;
     }
+
     // function to that gets the event data by event Name (getEventByEventName)
     public EventInformation getEventByEventName(String name) {
         EventInformation eventInformationName = eventRepository.getEventByEventName(name);
         return eventInformationName;
+    }
+
+    // function to that gets all the Events (getAllEvents)
+    public List<EventInformation> getAllEvents() {
+        List<EventInformation> getAllEvents = eventRepository.getAllEvents();
+        return getAllEvents;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.codeline.Olympics.Olympics_API.Controller;
 
-import com.codeline.Olympics.Olympics_API.Model.AthleteInformation;
 import com.codeline.Olympics.Olympics_API.Model.EventInformation;
 import com.codeline.Olympics.Olympics_API.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "events")
@@ -31,6 +32,13 @@ public class EventController {
         EventInformation eventName = eventService.getEventByEventName(name);
         return eventName;
     }
+    // function to that gets all the Events data(getAllEvents)
+    @RequestMapping(value = "/getAllEvents", method = RequestMethod.GET)
+    public List<EventInformation> getAllEvents() {
+        List<EventInformation> getAllEvents =eventService.getAllEvents();
+        return getAllEvents;
+    }
+
 
 
 }
