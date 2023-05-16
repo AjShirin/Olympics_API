@@ -26,19 +26,26 @@ public class EventController {
         }
         return "Event Created Successfully :)";
     }
+
     //function that gets event By name (getEventByEventName)
     @RequestMapping(value = "/getEventByEventName", method = RequestMethod.GET)
     public EventInformation getEventByEventName(@RequestParam String name) {
         EventInformation eventName = eventService.getEventByEventName(name);
         return eventName;
     }
+
     // function to that gets all the Events data(getAllEvents)
     @RequestMapping(value = "/getAllEvents", method = RequestMethod.GET)
     public List<EventInformation> getAllEvents() {
-        List<EventInformation> getAllEvents =eventService.getAllEvents();
+        List<EventInformation> getAllEvents = eventService.getAllEvents();
         return getAllEvents;
     }
 
-
+    // function to that gets the event data by event Id (getEventByEventId)
+    @RequestMapping(value = "/getEventByEventId", method = RequestMethod.GET)
+    public EventInformation getEventByEventId(@RequestParam Integer eventId) {
+        EventInformation eventInformationId = eventService.getEventByEventId(eventId);
+        return eventInformationId;
+    }
 
 }
