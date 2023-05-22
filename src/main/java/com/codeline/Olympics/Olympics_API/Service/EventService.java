@@ -7,6 +7,7 @@ import com.codeline.Olympics.Olympics_API.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -55,6 +56,21 @@ public class EventService {
         deleteEventById.setIsActive(Boolean.FALSE);
         eventRepository.save(deleteEventById);
 
+    }
+    // function that updates Event records (updateEvent)
+    public String updateEvent(Integer id, Boolean isActive, String sport, String eventUpdatedDate) {
+        try {
+            EventInformation event = eventRepository.getEventByEventId(id);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date updatedDate = formatter.parse(eventUpdatedDate);
+            event.setUpdateDate(updatedDate);
+            event.setIsActive(isActive);
+            event.setSport(sport);
+            eventRepository.save(event);
+            return "The Event ID:" + id + " has been successfully updated :)";
+        } catch (Exception e) {
+            return "An error occurred, record is not updated. Please try again.";
+        }
     }
 
 }

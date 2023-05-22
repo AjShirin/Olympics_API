@@ -15,7 +15,6 @@ public class AthleteInformation extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     String name;
     String nationality;
     String sport;

@@ -3,6 +3,8 @@ package com.codeline.Olympics.Olympics_API.Controller;
 import com.codeline.Olympics.Olympics_API.Model.MedalStanding;
 import com.codeline.Olympics.Olympics_API.Service.MedalStandingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,5 +48,18 @@ public class MedalStandingController {
     public List<MedalStanding> getAllMedalStandings() {
         List<MedalStanding> getAllMedalStandings = medalStandingService.getAllMedalStandings();
         return getAllMedalStandings;
+    }
+    // This function Updates a record for medal standing  with user Input (updateEvent)
+    @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
+    public ResponseEntity<String> updateEvent(@RequestParam Integer id, String country, Boolean isActive, Integer goldMedal, Integer silverMedal, Integer bronzeMedal, String medalUpdatedDat) {
+        // ResponseEntity<String> represents an HTTP,
+        // response with a body of type String, that returns response from a controller,and allows us to customize the HTTP response status.
+        try {
+            String responseMsg = medalStandingService.updateMedalStandings( id,  country,  isActive,  goldMedal,  silverMedal,  bronzeMedal,  medalUpdatedDat);
+            return ResponseEntity.ok().body(responseMsg);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred, medal standing is not updated. Please try again.");
+        }
     }
 }

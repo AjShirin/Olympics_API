@@ -6,6 +6,7 @@ import com.codeline.Olympics.Olympics_API.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -53,6 +54,22 @@ public class AthleteService {
         deleteAthleteById.setIsActive(Boolean.FALSE);
         athleteRepository.save(deleteAthleteById);
 
+    }
+    // function that updates Athlete records (updateAthlete)
+    public String updateAthlete(Integer id, String name, Boolean isActive, String nationality, String athleteUpdatedDate) {
+        try {
+            AthleteInformation athlete = athleteRepository.getAthleteByAthleteId(id);
+            athlete.setName(name);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date updatedDate = formatter.parse(athleteUpdatedDate);
+            athlete.setUpdateDate(updatedDate);
+            athlete.setIsActive(isActive);
+            athlete.setNationality(nationality);
+            athleteRepository.save(athlete);
+            return "The Athlete ID:" + id + " has been successfully updated :)";
+        } catch (Exception e) {
+            return "An error occurred, record is not updated. Please try again.";
+        }
     }
 }
 

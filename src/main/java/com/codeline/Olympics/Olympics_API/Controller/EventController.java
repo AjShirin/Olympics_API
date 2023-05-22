@@ -3,6 +3,8 @@ package com.codeline.Olympics.Olympics_API.Controller;
 import com.codeline.Olympics.Olympics_API.Model.EventInformation;
 import com.codeline.Olympics.Olympics_API.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,6 +60,20 @@ public class EventController {
         }
         return "Event Deleted Successfully :)";
 
+    }
+
+    // This function Updates a record for Event  with user Input (updateEvent)
+    @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
+    public ResponseEntity<String> updateEvent(@RequestParam Integer id, Boolean isActive, String sport, String eventUpdatedDate) {
+        // ResponseEntity<String> represents an HTTP,
+        // response with a body of type String, that returns response from a controller,and allows us to customize the HTTP response status.
+        try {
+            String responseMsg = eventService.updateEvent(id, isActive, sport, eventUpdatedDate);
+            return ResponseEntity.ok().body(responseMsg);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred, Event is not updated. Please try again.");
+        }
     }
 
 }
