@@ -17,30 +17,45 @@ public class AthleteController {
     AthleteService athleteService;
 
     @RequestMapping(value = "/createAthleteRecord", method = RequestMethod.POST)
-    public String createAthleteRecord(@RequestParam String name,String nationality,String sport) {
+    public String createAthleteRecord(@RequestParam String name, String nationality, String sport) {
         try {
-            athleteService.createAthleteRecord(name,nationality,sport);
+            athleteService.createAthleteRecord(name, nationality, sport);
         } catch (Exception e) {
             return "Failed... Please try again :(";
         }
         return "Athlete Record Created Successfully :)";
     }
+
     //function that gets athlete By ID (getAthleteByAthleteId)
     @RequestMapping(value = "/getAthleteByAthleteId", method = RequestMethod.GET)
     public AthleteInformation getAthleteByAthleteId(@RequestParam Integer athleteId) {
         AthleteInformation athleteInformation = athleteService.getAthleteByAthleteId(athleteId);
         return athleteInformation;
     }
+
     // function to that gets the athlete data by athlete Name (getAthleteByAthleteName)
     @RequestMapping(value = "/getAthleteByAthleteName", method = RequestMethod.GET)
     public AthleteInformation getAthleteByAthleteName(@RequestParam String athleteName) {
         AthleteInformation athleteByName = athleteService.getAthleteByAthleteName(athleteName);
         return athleteByName;
     }
+
     // function to that gets all the athlete data(getAllAthlete)
     @RequestMapping(value = "/getAllAthletes", method = RequestMethod.GET)
     public List<AthleteInformation> getAllAthletes() {
         List<AthleteInformation> getAllAthletes = athleteService.getAllAthlete();
         return getAllAthletes;
+    }
+
+    // function that changes that isActive to false (deleteAthleteById)
+    @RequestMapping(value = "/deleteAthleteById", method = RequestMethod.POST)
+    public String deleteAthleteById(@RequestParam Integer id) {
+        try {
+            athleteService.deleteAthleteById(id);
+        } catch (Exception e) {
+            return "Athlete Record Failed to deactivate please try again";
+        }
+        return "Athlete Record Deleted Successfully :)";
+
     }
 }

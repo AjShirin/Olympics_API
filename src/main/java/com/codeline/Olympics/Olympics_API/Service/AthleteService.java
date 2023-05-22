@@ -34,16 +34,25 @@ public class AthleteService {
         AthleteInformation athleteInformationId = athleteRepository.getAthleteByAthleteId(id);
         return athleteInformationId;
     }
+
     // function to that gets the athlete data by athlete Name (getAthleteByAthleteName)
     public AthleteInformation getAthleteByAthleteName(String name) {
         AthleteInformation athleteInformationName = athleteRepository.getAthleteByAthleteName(name);
         return athleteInformationName;
     }
+
     // function to that gets all the athlete data(getAllAthlete)
     public List<AthleteInformation> getAllAthlete() {
         List<AthleteInformation> getAllAthlete = athleteRepository.getAllAthletes();
         return getAllAthlete;
     }
 
+    // function that makes the isActive to false (deleteAthleteById)
+    public void deleteAthleteById(Integer id) {
+        AthleteInformation deleteAthleteById = athleteRepository.getAthleteByAthleteId(id);
+        deleteAthleteById.setIsActive(Boolean.FALSE);
+        athleteRepository.save(deleteAthleteById);
+
+    }
 }
 

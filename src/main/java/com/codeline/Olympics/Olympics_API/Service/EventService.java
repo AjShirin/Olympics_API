@@ -49,5 +49,12 @@ public class EventService {
         List<EventInformation> getAllEvents = eventRepository.getAllEvents();
         return getAllEvents;
     }
+    // function that makes the isActive to false (deleteEventById)
+    public void deleteEventById(Integer id) {
+        EventInformation deleteEventById = eventRepository.getEventByEventId(id);
+        deleteEventById.setIsActive(Boolean.FALSE);
+        eventRepository.save(deleteEventById);
+
+    }
 
 }

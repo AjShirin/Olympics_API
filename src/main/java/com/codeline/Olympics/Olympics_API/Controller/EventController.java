@@ -48,4 +48,16 @@ public class EventController {
         return eventInformationId;
     }
 
+    // function that changes that isActive to false (deleteEventById)
+    @RequestMapping(value = "/deleteEventById", method = RequestMethod.POST)
+    public String deleteEventById(@RequestParam Integer id) {
+        try {
+            eventService.deleteEventById(id);
+        } catch (Exception e) {
+            return "Event Failed to deactivate please try again";
+        }
+        return "Event Deleted Successfully :)";
+
+    }
+
 }
